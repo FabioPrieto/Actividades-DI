@@ -1,0 +1,32 @@
+#caja3{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+#container{
+    position: relative;
+    left: 50px;
+}
+/* 
+Cuando usas position: absolute sin un contenedor que sirva de referencia con position: relative o absolute, 
+el elemento se posiciona respecto al viewport, que es la ventana visible del navegador. 
+Por eso, la Caja 3 se posiciona a 50px desde la esquina superior izquierda del viewport, 
+no en relación con las otras cajas.
+*/
+/* 
+Cuando asignas position: relative al contenedor (#container), la Caja 3 se posiciona en relación al contenedor en lugar de al viewport. 
+Por lo tanto, se ubica a 50px desde la esquina superior izquierda del contenedor, y no del viewport.
+
+Aunque la Caja 1 y Caja 2 están presentes en el flujo del documento, 
+la Caja 3 es extraída del flujo normal debido a su position: absolute. 
+Por eso, se coloca por encima de las otras dos cajas.
+*/
+/* 
+La Caja 3 está posicionada de forma absoluta en relación al contenedor, 
+y no al viewport. Al mover el contenedor 50px a la derecha usando left: 50px, todo su contenido, 
+incluida la Caja 3, se mueve con él. 
+Como la posición de la Caja 3 es relativa al contenedor, 
+seguirá estando a 50px desde la esquina superior izquierda del contenedor, 
+pero ahora el contenedor en sí está desplazado, 
+lo que causa que la Caja 3 también se mueva.
+*/

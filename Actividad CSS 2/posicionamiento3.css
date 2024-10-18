@@ -1,0 +1,11 @@
+h2{
+    position: fixed;
+    width: 100%;
+    background-color: red;
+}
+/* 
+Elemento fuera del flujo del documento: 
+El h2 con position: fixed está completamente fuera del flujo normal del documento, 
+por lo que el contenido que venga después no lo "empuja" hacia abajo. 
+El contenido que aparece debajo del h2 se comporta como si el h2 no estuviera presente en su posición original.
+*/

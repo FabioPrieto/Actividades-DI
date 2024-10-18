@@ -1,0 +1,18 @@
+#caja3{
+    position: relative;
+    top: 50px;
+    left: 50px;
+}
+/* 
+Cuando usas position: relative;, la caja sigue ocupando su espacio original en el flujo del documento, incluso si visualmente está desplazada.
+
+La Caja 3 sigue ocupando su espacio como si estuviera en su posición original, 
+pero visualmente está desplazada 50px hacia abajo y hacia la derecha.
+
+Esto provoca que la Caja 4, que viene después de la Caja 3, 
+se coloque justo debajo del espacio original de la Caja 3.
+
+Como resultado, 
+la Caja 3 (al estar visualmente desplazada) se ve superpuesta sobre la Caja 4 
+porque no se altera su lugar en el flujo de la página, solo se altera su posición visual.
+*/
