@@ -1,0 +1,151 @@
+/* Estilos globales */
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: Helvetica, sans-serif;
+}
+#container{
+    width: 90%;
+    margin: 2vw auto;
+    box-shadow: 0px 0px 5px gray;
+}
+/* Header */
+header{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    box-shadow: 0px 0px 5px gray;
+    padding: 15px;
+}
+/* Logotipo */
+header .logo{
+    width: 50%;
+    flex-grow: 1000;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.5vw;
+    font-style: italic;
+}
+/* Menu de navegación */
+#menu{
+    width: 50%;
+    justify-content: space-evenly;
+}
+#menu ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    list-style: none;
+}
+#menu a{
+    font-size: 1.5vw;
+    transition: 300ms;
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+}
+#menu a:hover{
+    color: white;
+    background-color: black;
+}
+/* Distribucion del contenido */
+#content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+aside{
+    flex-basis: 15%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0px 30px;
+}
+/* aside h2{
+    font-size: 2vw;
+} */
+aside a{
+    background-color: rgb(238, 238, 238);
+    transition: 300ms;
+    margin: 10px 5px;
+    width: 100%;
+    display: block;
+    padding: 8px;
+    text-align: center;
+    color: black;
+}
+aside a:hover{
+    background-color: rgb(75, 75, 75);
+    color: white;
+}
+#projects{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#projects .project{
+    width: 20%;
+    border: 1px solid gray;
+    box-shadow: 0px 0px 5px gray;
+    margin: 10px;
+    min-width: 250px;
+    flex-grow: 1;
+}
+.project a{
+    color: black;
+}
+.project img{
+    width: 100%;
+}
+.project .project-info{
+    padding: 10px;
+}
+.project:hover p{
+    color: gray;
+}
+/* Footer */
+footer{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding: 30px;
+    box-shadow: 0px 0px 5px gray;
+    margin-top: 30px;
+}
+footer .logo{
+    opacity: 0.5;
+    font-style: italic;
+}
+/* Media query para pantallas más pequeñas (Tablets y Móviles) */
+@media screen and (max-width: 1000px) {
+    
+    #content {
+        flex-direction: column;
+    }
+    
+    header{
+        flex-direction: column;
+        text-align: center;
+    }
+    header .logo{
+        font-size: 20px;
+        padding: 15px;
+        width: 100%;
+    }
+    header #menu{
+        width: 100%;
+    }
+    header #menu a{
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+}
+
+
