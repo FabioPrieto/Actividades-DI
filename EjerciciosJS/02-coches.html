@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="caja"></div>
+    <script>
+      let marca = "Audi",
+        velocidad = 200,
+        stock = true,
+        modelos = ["R8", "A5", "A3"];
+
+      let caja = document.getElementById("caja");
+      if (stock) {
+        caja.innerHTML = `<p>Tenemos el coches de la marca ${marca}, pueden ir hasta ${velocidad}km/h</p>`;
+
+        let listaModelos = "<ul>";
+        modelos.forEach((modelo) => {
+          listaModelos += `<li>${modelo}</li>`;
+        });
+        listaModelos += "</ul>";
+
+        caja.innerHTML += listaModelos;
+      }
+    </script>
+  </body>
+</html>

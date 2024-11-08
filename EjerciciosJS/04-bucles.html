@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. Bucle for
+      for (let i = 1; i <= 5; i++) {
+        console.log(`Iteración número: ${i}`);
+      }
+
+      // 2. Bucle while
+      let j = 1;
+      while (j <= 5) {
+        console.log(`Iteración número: ${j}`);
+        j++;
+      }
+
+      // 3. Bucle do...while
+      let k = 1;
+      do {
+        console.log(`Iteración número: ${k}`);
+        k++;
+      } while (k <= 5);
+
+      // 4. Bucle for...of con array y string
+      const frutas = ["manzana", "banana", "cereza"];
+      for (const fruta of frutas) {
+        console.log(fruta);
+      }
+
+      for (const letra of frutas[0]) {
+        console.log(letra);
+      }
+
+      // 5. Bucle for...in con objeto
+      const persona = {
+        nombre: "Carlos",
+        edad: 30,
+        ciudad: "Madrid",
+      };
+      for (const propiedad in persona) {
+        console.log(`${propiedad}: ${persona[propiedad]}`);
+      }
+
+      // 6. Funciones
+
+      // Declaración de función
+      function saludar(nombre) {
+        return `Hola, ${nombre}!`;
+      }
+      console.log(saludar("Juan"));
+
+      // Expresión de función
+      const despedir = function (nombre) {
+        return `Adiós, ${nombre}. ¡Hasta luego!`;
+      };
+      console.log(despedir("Ana"));
+
+      // Funciones flecha
+      const multiplicar = (a, b) => a * b;
+      console.log(multiplicar(3, 4));
+
+      const cuadradoA = (x) => x * x;
+      console.log(cuadradoA(5));
+
+      const numero = () => 2 + 1;
+      console.log(numero());
+
+      // Función con parámetros variables
+      const sumaTodos = (...numeros) => {
+        let suma = 0;
+        for (const num of numeros) {
+          suma += num;
+        }
+        console.log(suma);
+      };
+      sumaTodos(1, 2, 3, 4, 5);
+    </script>
+  </body>
+</html>

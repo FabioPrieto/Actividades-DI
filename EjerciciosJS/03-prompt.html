@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="resultado">
+        
+    </div>
+    <script>
+      let sueldo = Number(prompt("Introduce tu salario:"));
+
+      let mensaje;
+
+      switch (true) {
+        case sueldo <= 500:
+          mensaje = "Trabajas a media jornada.";
+          break;
+        case sueldo <= 1000:
+          mensaje = "Tienes el salario mínimo.";
+          break;
+        case sueldo <= 1500:
+          mensaje = "Tienes un salario normal.";
+          break;
+        case sueldo <= 2000:
+          mensaje = "Tienes un salario bueno.";
+          break;
+        default:
+          mensaje = "Tienes un salario excelente o muy alto.";
+      }
+
+      document.getElementById("resultado").textContent = mensaje;
+    </script>
+  </body>
+</html>
