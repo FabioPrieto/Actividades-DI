@@ -15,10 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
     motivo: document.getElementById("error-motivo"),
   };
 
+  // Expresiones regulares
+  const regexNombreApellido = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,20}$/;
+  const regexDNI = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/;
+  const letrasDNI = "TRWAGMYFPDXBNJZSQVHLCKE";
+  const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const regexMotivo = /^[a-zA-Z0-9\s,.;()¿?¡!]{1,255}$/;
+
   const validarCampoTexto = (valor, campo) => {
     valor = valor.trim();
     if (!valor) return `El ${campo} es obligatorio.`;
-    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,20}$/.test(valor)) {
+    if (!regexNombreApellido.test(valor)) {
       return `El ${campo} debe tener entre 3 y 20 caracteres alfabéticos.`;
     }
     return "";
@@ -26,8 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const validarDNI = () => {
     const valor = inputs.dni.value.trim();
-    const regexDNI = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKEtrwagmyfpdxbnjzsqvhlcke]$/;
-    const letrasDNI = "TRWAGMYFPDXBNJZSQVHLCKE";
     if (!valor) return "El DNI es obligatorio.";
     if (!regexDNI.test(valor)) return "El DNI debe tener 8 dígitos y una letra.";
     const numero = parseInt(valor.slice(0, -1));
@@ -41,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const validarEmail = () => {
     const valor = inputs.email.value.trim();
     if (!valor) return "El correo electrónico es obligatorio.";
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(valor)) {
+    if (!regexEmail.test(valor)) {
       return "El correo electrónico no es válido.";
     }
     return "";
@@ -50,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const validarMotivo = () => {
     const valor = inputs.motivo.value.trim();
     if (!valor) return "El motivo es obligatorio.";
-    if (!/^[a-zA-Z0-9\s,.;()¿?¡!]{1,255}$/.test(valor)) {
+    if (!regexMotivo.test(valor)) {
       return "El motivo solo puede contener letras, números y (, . ; ()).¿?¡!";
     }
     return "";
