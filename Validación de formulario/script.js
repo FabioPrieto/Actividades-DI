@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Expresiones regulares
   const regexNombreApellido = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,20}$/;
-  const regexDNI = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/;
+  const regexDNI = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]\i$/;
   const letrasDNI = "TRWAGMYFPDXBNJZSQVHLCKE";
   const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const regexMotivo = /^[a-zA-Z0-9\s,.;()¿?¡!]{1,255}$/;
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const validarDNI = () => {
     const valor = inputs.dni.value.trim();
     if (!valor) return "El DNI es obligatorio.";
-    if (!regexDNI.test(valor)) return "El DNI debe tener 8 dígitos y una letra.";
+    if (regexDNI.test(valor)) return "El DNI debe tener 8 dígitos y una letra.";
     const numero = parseInt(valor.slice(0, -1));
     const letra = valor.slice(-1).toUpperCase();
     if (letra !== letrasDNI[numero % 23]) {
