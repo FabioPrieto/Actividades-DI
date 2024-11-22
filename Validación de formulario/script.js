@@ -15,23 +15,23 @@ document.addEventListener("DOMContentLoaded", () => {
     motivo: document.getElementById("error-motivo"),
   };
 
-  const validarNombre = () => {
-    const valor = inputs.nombre.value.trim();
-    if (!valor) return "El nombre es obligatorio.";
+  const validarCampoTexto = (valor, campo) => {
+    valor = valor.trim();
+    if (!valor) return `El ${campo} es obligatorio.`;
     if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,20}$/.test(valor)) {
-      return "El nombre debe tener entre 3 y 20 caracteres alfabéticos.";
+      return `El ${campo} debe tener entre 3 y 20 caracteres alfabéticos.`;
     }
     return "";
   };
 
   const validarDNI = () => {
     const valor = inputs.dni.value.trim();
-    const regexDNI = /^[0-9]{8}[A-Z]$/;
+    const regexDNI = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKEtrwagmyfpdxbnjzsqvhlcke]$/;
     const letrasDNI = "TRWAGMYFPDXBNJZSQVHLCKE";
     if (!valor) return "El DNI es obligatorio.";
     if (!regexDNI.test(valor)) return "El DNI debe tener 8 dígitos y una letra.";
     const numero = parseInt(valor.slice(0, -1));
-    const letra = valor.slice(-1);
+    const letra = valor.slice(-1).toUpperCase();
     if (letra !== letrasDNI[numero % 23]) {
       return "La letra del DNI no es válida.";
     }
@@ -50,15 +50,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const validarMotivo = () => {
     const valor = inputs.motivo.value.trim();
     if (!valor) return "El motivo es obligatorio.";
-    if (!/^[a-zA-Z0-9\s,.;()]{1,255}$/.test(valor)) {
-      return "El motivo solo puede contener letras, números y (, . ; ()).";
+    if (!/^[a-zA-Z0-9\s,.;()¿?¡!]{1,255}$/.test(valor)) {
+      return "El motivo solo puede contener letras, números y (, . ; ()).¿?¡!";
     }
     return "";
   };
 
   const validaciones = {
-    nombre: validarNombre,
-    apellidos: validarNombre,
+    nombre: () => validarCampoTexto(inputs.nombre.value, "nombre"),
+    apellidos: () => validarCampoTexto(inputs.apellidos.value, "apellidos"),
     dni: validarDNI,
     email: validarEmail,
     motivo: validarMotivo,
