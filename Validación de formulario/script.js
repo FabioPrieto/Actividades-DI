@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "POST",
         body: new FormData(formulario),
       }).then(() => alert("Datos enviados correctamente."));
+      formulario.reset();
     } else {
       alert("Por favor, corrige los errores antes de enviar.");
     }
