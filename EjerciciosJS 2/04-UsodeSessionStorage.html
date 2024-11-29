@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contador de Visitas por Sesión</title>
+  </head>
+  <body>
+    <h1>Contador de Visitas por Sesión</h1>
+    <p>
+      Has visitado esta página <span id="contador">0</span> veces en esta sesión.
+    </p>
+    <script>
+      const contadorElemento = document.getElementById("contador");
+
+      let visitas = parseInt(sessionStorage.getItem("visitas")) || 0;
+
+      visitas += 1;
+
+      sessionStorage.setItem("visitas", visitas);
+
+      contadorElemento.textContent = visitas;
+    </script>
+  </body>
+</html>

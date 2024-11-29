@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manejo de Eventos</title>
+  <style>
+    #miBoton {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #miBoton:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <button id="miBoton">Haz clic aquí</button>
+
+  <script>
+    const boton = document.getElementById("miBoton");
+
+    boton.addEventListener("click", () => {
+      alert("¡Botón clickeado!");
+
+      boton.style.backgroundColor = "red";
+
+      boton.disabled = true;
+    });
+  </script>
+</body>
+</html>
