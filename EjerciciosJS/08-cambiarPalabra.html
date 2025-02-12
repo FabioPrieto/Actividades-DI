@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reemplazar Palabra</title>
+</head>
+<body>
+  <script>
+    const frase = "Frase Predefinica ocho";
+
+    const reemplazarPalabra = (frase, palabraOriginal, palabraNueva) => {
+      if (!frase.includes(palabraOriginal)) {
+        return `La palabra "${palabraOriginal}" no se encuentra en la frase.`;
+      }
+
+      const nuevaFrase = frase.replace(palabraOriginal, palabraNueva);
+      return nuevaFrase;
+    };
+
+    alert(`Frase inicial: ${frase}`);
+
+    const palabraOriginal = prompt("Ingresa la palabra que deseas reemplazar:");
+
+    if (palabraOriginal) {
+      const palabraNueva = prompt("Ingresa la nueva palabra:");
+
+      if (palabraNueva) {
+        const resultado = reemplazarPalabra(frase, palabraOriginal, palabraNueva);
+        alert(resultado);
+      } else {
+        alert("No ingresaste una palabra de reemplazo.");
+      }
+    } else {
+      alert("No ingresaste una palabra para reemplazar.");
+    }
+  </script>
+</body>
+</html>

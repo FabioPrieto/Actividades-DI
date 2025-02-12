@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const sueldos = [1050, 650, 750, 1500, 2200, 3000, 450];
+
+      const sueldoUsuario = parseFloat(prompt("Introduce tu sueldo:"));
+
+      if (isNaN(sueldoUsuario) || sueldoUsuario <= 0) {
+        console.error("Por favor, introduce un sueldo válido.");
+      } else {
+        const buscarSueldo = (arraySueldos, sueldo) => {
+          const sueldosFiltrados = arraySueldos.filter((s) => s >= sueldo);
+          sueldosFiltrados.sort((a, b) => a - b);
+          console.log(
+            `Sueldos mayores o iguales a ${sueldo}:`,
+            sueldosFiltrados
+          );
+        };
+
+        buscarSueldo(sueldos, sueldoUsuario);
+      }
+    </script>
+  </body>
+</html>

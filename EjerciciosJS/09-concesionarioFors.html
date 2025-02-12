@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let concesionario = [
+        {
+          marca: "mercedes",
+          modelos: ["A", "B", "C"],
+        },
+        {
+          marca: "audi",
+          modelos: ["a4", "a5", "a6"],
+        },
+        {
+          marca: "renault",
+          modelos: ["clio", "megan", "captus"],
+        },
+      ];
+
+      console.log("Recorrido con for...of:");
+      for (let coche of concesionario) {
+        console.log(
+          `Marca: ${coche.marca}, Modelos: ${coche.modelos.join(", ")}`
+        );
+      }
+
+      console.log("\nRecorrido con for...in:");
+      for (let indice in concesionario) {
+        const coche = concesionario[indice];
+        console.log(
+          `Marca: ${coche.marca}, Modelos: ${coche.modelos.join(", ")}`
+        );
+      }
+
+      const mostrarDatos = (concesionario) => {
+        console.log("\nRecorrido con forEach:");
+        concesionario.forEach((coche) => {
+          console.log(
+            `Marca: ${coche.marca}, Modelos: ${coche.modelos.join(", ")}`
+          );
+        });
+      };
+
+      mostrarDatos(concesionario);
+    </script>
+  </body>
+</html>
