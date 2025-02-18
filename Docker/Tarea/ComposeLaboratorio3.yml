@@ -1,0 +1,41 @@
+version: '3.8'  # Especifica la versión de Docker Compose que se usará.
+
+services:
+  db:  # Define el servicio para la base de datos MySQL.
+    image: mysql:5.7  # Usa la imagen oficial de MySQL versión 5.7.
+    container_name: mysql_db  # Asigna un nombre específico al contenedor de MySQL.
+    restart: always  # Reinicia el contenedor automáticamente si se detiene.
+    environment:  # Variables de entorno para la configuración de MySQL.
+      MYSQL_ROOT_PASSWORD: root_password  # Contraseña del usuario root de MySQL.
+      MYSQL_DATABASE: wordpress  # Nombre de la base de datos que se creará.
+      MYSQL_USER: wp_user  # Usuario de la base de datos.
+      MYSQL_PASSWORD: wp_password  # Contraseña del usuario de la base de datos.
+    volumes:
+      - db_data:/var/lib/mysql  # Monta un volumen para persistir los datos de MySQL.
+    networks:
+      - wp_network  # Conecta el servicio a una red personalizada.
+
+  wordpress:  # Define el servicio para la aplicación WordPress.
+    image: wordpress:5.6.2-php7.3  # Usa la imagen oficial de WordPress con PHP 7.3.
+    container_name: wordpress_app  # Asigna un nombre específico al contenedor de WordPress.
+    depends_on:
+      - db  # Se asegura de que el servicio "db" se inicie antes que WordPress.
+    ports:
+      - "9090:80"  # Mapea el puerto 9090 del host al puerto 80 del contenedor.
+    restart: always  # Reinicia el contenedor automáticamente si se detiene.
+    environment:  # Variables de entorno para la configuración de WordPress.
+      WORDPRESS_DB_HOST: db:3306  # Dirección y puerto de la base de datos MySQL.
+      WORDPRESS_DB_USER: wp_user  # Usuario que WordPress usará para conectarse a MySQL.
+      WORDPRESS_DB_PASSWORD: wp_password  # Contraseña del usuario de la base de datos.
+      WORDPRESS_DB_NAME: wordpress  # Nombre de la base de datos que usará WordPress.
+    volumes:
+      - wp_data:/var/www/html  # Monta un volumen para persistir los archivos de WordPress.
+    networks:
+      - wp_network  # Conecta el servicio a la misma red que MySQL.
+
+volumes:  # Define volúmenes persistentes para los datos.
+  db_data:  # Volumen para los datos de MySQL.
+  wp_data:  # Volumen para los archivos de WordPress.
+
+networks:  # Define redes personalizadas.
+  wp_network:  # Red para la comunicación entre WordPress y MySQL.

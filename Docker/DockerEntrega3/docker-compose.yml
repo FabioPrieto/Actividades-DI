@@ -1,0 +1,29 @@
+version: "3.8"  # Especifica la versión de Docker Compose que estamos usando.
+
+services:  # Define los servicios que se van a ejecutar.
+  mysql:  # Configuración para el servicio de la base de datos MySQL.
+    container_name: mysql_database  # Nombre del contenedor para identificarlo fácilmente.
+    image: mysql:8.0  # Imagen oficial de MySQL en su versión 8.0.
+    ports:
+      - "3307:3306"  # Mapea el puerto 3306 del contenedor al puerto 3306 del host (para conexiones externas).
+    volumes:
+      - volumen3:/var/lib/mysql  # Usa un volumen llamado "volumen3" para almacenar datos de forma persistente.
+    environment:  # Variables de entorno necesarias para configurar MySQL.
+      MYSQL_ROOT_PASSWORD: rootpassword  # Contraseña para el usuario root de MySQL.
+      MYSQL_DATABASE: testdb  # Crea una base de datos llamada "testdb".
+      MYSQL_USER: testuser  # Crea un usuario llamado "testuser".
+      MYSQL_PASSWORD: testpassword  # Establece la contraseña del usuario "testuser".
+
+  phpmyadmin:  # Configuración para el servicio de phpMyAdmin.
+    container_name: phpmyadmin_service  # Nombre del contenedor para identificarlo fácilmente.
+    image: phpmyadmin/phpmyadmin  # Imagen oficial de phpMyAdmin.
+    depends_on:  # Asegura que este servicio se inicie después de que el servicio MySQL esté listo.
+      - mysql
+    ports:
+      - "8081:80"  # Mapea el puerto 80 del contenedor al puerto 8081 del host (para acceder a phpMyAdmin).
+    environment:  # Variables de entorno necesarias para configurar phpMyAdmin.
+      PMA_HOST: mysql  # Define el host donde se encuentra la base de datos (nombre del servicio MySQL).
+      PMA_PORT: 3306  # Puerto del servicio MySQL.
+
+volumes:  # Define los volúmenes utilizados por los servicios.
+  volumen3:  # Volumen persistente para almacenar los datos de MySQL.

@@ -1,0 +1,42 @@
+version: '3.8'  # Versión de la sintaxis de Docker Compose utilizada para definir este archivo de configuración.
+
+services:  # Sección que define los servicios (contenedores) que forman parte de esta configuración.
+
+  db:  # Definición del servicio de la base de datos.
+    image: mysql:5.7  # Imagen de Docker utilizada para crear el contenedor, en este caso, una versión específica de MySQL (5.7).
+    container_name: mysql_db  # Nombre personalizado para el contenedor en ejecución.
+    restart: always  # Política de reinicio que asegura que el contenedor se reinicie si se detiene o si el sistema se reinicia.
+    environment:  # Variables de entorno que se pasan al contenedor en tiempo de ejecución.
+      MYSQL_ROOT_PASSWORD: root_password  # Contraseña para el usuario root de la base de datos MySQL.
+      MYSQL_DATABASE: example_db  # Nombre de la base de datos que se creará automáticamente cuando se inicie el contenedor.
+      MYSQL_USER: example_user  # Nombre de usuario para acceder a la base de datos.
+      MYSQL_PASSWORD: example_password  # Contraseña asociada al usuario de la base de datos.
+    volumes:  # Volúmenes de Docker, que se usan para persistir datos fuera del contenedor.
+      - db_data:/var/lib/mysql  # El volumen 'db_data' se monta en la ruta donde MySQL almacena sus datos dentro del contenedor.
+    networks:  # Red en la que el contenedor estará conectado.
+      - example_network  # Nombre de la red a la que se conecta el contenedor 'db'.
+
+  app:  # Definición del servicio de la aplicación (en este caso, WordPress).
+    image: wordpress:5.8  # Imagen de Docker utilizada para crear el contenedor, en este caso, una versión específica de WordPress (5.8).
+    container_name: wordpress_app  # Nombre personalizado para el contenedor en ejecución.
+    depends_on:  # Define dependencias entre los contenedores, asegurando que el servicio 'app' se inicie después de que 'db' esté listo.
+      - db  # La aplicación depende del contenedor de la base de datos 'db'.
+    ports:  # Configuración de puertos que expone el contenedor a la máquina host.
+      - "9090:80"  # El puerto 80 dentro del contenedor se mapea al puerto 8080 de la máquina host.
+    restart: always  # Política de reinicio que asegura que el contenedor se reinicie si se detiene o si el sistema se reinicia.
+    environment:  # Variables de entorno que se pasan al contenedor de la aplicación.
+      WORDPRESS_DB_HOST: db:3306  # Dirección y puerto de la base de datos, en este caso, el servicio 'db' en el puerto 3306.
+      WORDPRESS_DB_USER: example_user  # Nombre de usuario para conectarse a la base de datos.
+      WORDPRESS_DB_PASSWORD: example_password  # Contraseña asociada al usuario de la base de datos.
+      WORDPRESS_DB_NAME: example_db  # Nombre de la base de datos que se utilizará en WordPress.
+    volumes:  # Volúmenes de Docker para persistir los datos de la aplicación fuera del contenedor.
+      - app_data:/var/www/html  # El volumen 'app_data' se monta en la ruta donde WordPress guarda sus archivos.
+    networks:  # Red en la que el contenedor estará conectado.
+      - example_network  # Nombre de la red a la que se conecta el contenedor 'app'.
+
+volumes:  # Definición de los volúmenes que se utilizarán para persistir datos.
+  db_data:  # Volumen que se usa para almacenar los datos de MySQL de forma persistente.
+  app_data:  # Volumen que se usa para almacenar los archivos de WordPress de forma persistente.
+
+networks:  # Definición de las redes que se utilizan para conectar los servicios entre sí.
+  example_network:  # Red a la que los servicios 'db' y 'app' están conectados, permitiendo que se comuniquen entre sí.

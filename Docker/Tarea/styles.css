@@ -1,0 +1,20 @@
+
+.note-box {
+  background-color: #f8f9fc;
+  border-left: 6px solid #4a90e2;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+}
+
+.note-box h3 {
+  margin-top: 0;
+  color: #4a90e2;
+  font-size: 1.2em;
+}
+
+.note-box p {
+  margin: 5px 0 0;
+  color: #333;
+}
