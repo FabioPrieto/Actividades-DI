@@ -1,5 +1,5 @@
 .login-container {
-    width: 300px;
+    width: 80%;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -8,6 +8,10 @@
     background-color: #f9f9f9;
   }
   
+  form > div{
+    display: flex;
+    flex-wrap: wrap;
+  }
   input {
     width: 100%;
     padding: 8px;
@@ -24,12 +28,21 @@
     background-color: #007bff;
     color: white;
     cursor: pointer;
+    width: 100%;
   }
   
   button:hover {
     background-color: #0056b3;
   }
   
+  button[type="submit"]{
+    background-color: green;
+  }
+
+  button[type="button"]{
+    background-color: red;
+  }
+
   .error-message {
     color: red;
     font-size: 14px;

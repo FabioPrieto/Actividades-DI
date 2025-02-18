@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.css"; // Asegúrate de crear un archivo CSS para los estilos
+import "./login.css"; // Asegúrate de crear un archivo CSS para los estilos
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -36,7 +36,7 @@ const Login = () => {
       return;
     }
 
-    if (username === "TuNombre" && password === "Abc123!") {
+    if (username === "Fabio" && password === "Abc123!") {
       setSuccess("Inicio de sesión exitoso.");
     } else {
       setError("Nombre de usuario o contraseña incorrectos.");
@@ -53,8 +53,6 @@ const Login = () => {
   return (
     <div className="login-container">
       <h2>Login</h2>
-      {error && <p className="error-message">{error}</p>}
-      {success && <p className="success-message">{success}</p>}
       <form onSubmit={handleLogin}>
         <div>
           <label>Nombre de Usuario:</label>
@@ -72,9 +70,11 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        {error && <p className="error-message">{error}</p>}
+        {success && <p className="success-message">{success}</p>}
         <button type="submit">Iniciar Sesión</button>
         <button type="button" onClick={handleReset}>
-          Limpiar
+          Limpiar Datos
         </button>
       </form>
     </div>
