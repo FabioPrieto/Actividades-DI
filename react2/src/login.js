@@ -4,7 +4,8 @@ import "./login.css"; // Asegúrate de crear un archivo CSS para los estilos
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errorNombre, setErrorNombre] = useState("");
+  const [errorPass, setErrorPass] = useState("");
   const [success, setSuccess] = useState("");
 
   const patronNombreApellido = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]{1,20}$/;
@@ -13,46 +14,52 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setError("");
+    setErrorNombre("");
+    setErrorPass("");
     setSuccess("");
+    let mal = false;
 
     if (!username) {
-      setError("El nombre es obligatorio.");
-      return;
+      setErrorNombre("El nombre es obligatorio.");
+      mal = true;
     }
-    if (!patronNombreApellido.test(username)) {
-      setError("El nombre no debe contener números ni caracteres especiales.");
-      return;
+    else if (!patronNombreApellido.test(username)) {
+      setErrorNombre("El nombre no debe contener números ni caracteres especiales.");
+      mal = true;
     }
 
     if (!password) {
-      setError("La contraseña es obligatoria.");
-      return;
+      setErrorPass("La contraseña es obligatoria.");
+      mal = true;
     }
-    if (!patronContrasena.test(password)) {
-      setError(
+    else if (!patronContrasena.test(password)) {
+      setErrorPass(
         "La contraseña debe tener al menos 6 caracteres, incluyendo una mayúscula, una minúscula, un número y un carácter especial."
       );
-      return;
+      mal = true;
+    }
+    if(mal){
+      return
     }
 
     if (username === "Fabio" && password === "Abc123!") {
       setSuccess("Inicio de sesión exitoso.");
     } else {
-      setError("Nombre de usuario o contraseña incorrectos.");
+      setErrorPass("Nombre de usuario o contraseña incorrectos.");
     }
   };
 
   const handleReset = () => {
     setUsername("");
     setPassword("");
-    setError("");
+    setErrorNombre("");
+    setErrorPass("");
     setSuccess("");
   };
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
+      <h2>Formulario de login</h2>
       <form onSubmit={handleLogin}>
         <div>
           <label>Nombre de Usuario:</label>
@@ -61,6 +68,7 @@ const Login = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          {errorNombre && <p className="error-message">{errorNombre}</p>}
         </div>
         <div>
           <label>Contraseña:</label>
@@ -70,7 +78,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        {error && <p className="error-message">{error}</p>}
+        {errorPass && <p className="error-message">{errorPass}</p>}
         {success && <p className="success-message">{success}</p>}
         <button type="submit">Iniciar Sesión</button>
         <button type="button" onClick={handleReset}>
