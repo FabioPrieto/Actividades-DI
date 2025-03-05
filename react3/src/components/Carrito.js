@@ -12,7 +12,7 @@ function Carrito({ cart, products }) {
             const product = products.find((p) => p.id === parseInt(productId));
             return (
               <li key={productId}>
-                {product.name} - Cantidad: {quantity}
+                <b>{product.name}</b> <br></br> Cantidad: {quantity}
               </li>
             );
           })}

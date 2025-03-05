@@ -5,10 +5,8 @@ import Blog from './Blog';
 import Tienda from './Tienda';
 
 function App() {
-  console.log('App component rendered');
   return (
     <BrowserRouter>
-    <h1>Prueba</h1>
       <div className="app">
         <nav className="navbar">
           <Link to="/">Inicio</Link>

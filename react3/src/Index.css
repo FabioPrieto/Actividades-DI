@@ -7,22 +7,27 @@ body {
   
   .app {
     padding: 20px;
+    margin: 0 auto;
   }
   
   .navbar {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    background-color: #007bff;
+    justify-content: center;
   }
   
   .navbar a {
     text-decoration: none;
     color: white;
-    background-color: #007bff;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 10px 25px;
   }
-  
+
+  .navbar a:hover {
+    background-color: #004a99;
+  }
+
   .page {
     padding: 20px;
   }
@@ -55,10 +60,20 @@ body {
     padding: 10px;
     cursor: pointer;
     border-radius: 5px;
+    width: 100%;
   }
   
   .cart {
     flex: 1;
     border: 1px solid #ddd;
     padding: 10px;
+  }
+
+  .cart ul{
+    padding: 0;
+  }
+  .cart li{
+    border-bottom: 1px solid black;
+    list-style: none;
+    padding: 10px 0px;
   }
